@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { Logger } from "./logger";
+import { Logger } from "./logger.js";
 
 export function handleError(error: any): void {
   if (error.message) {

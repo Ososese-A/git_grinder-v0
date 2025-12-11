@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
-import { ConfigService } from "./config.service";
+import { ConfigService } from "./config.service.js";
 import { ActivityPayload } from "../types";
-import { Logger } from "../utils/logger";
+import { Logger } from "../utils/logger.js";
 
 export class TrackingService {
   private static client: AxiosInstance | null = null;

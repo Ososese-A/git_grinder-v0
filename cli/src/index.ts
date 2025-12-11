@@ -1,8 +1,9 @@
-import yargs, { boolean, hide } from "yargs";
+#!/usr/bin/env node
+import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import chalk from "chalk";
-import { commitCommand } from "./commands/commit";
-import { Logger, LogLevel } from "./utils/logger";
+import { updateCommand } from "./commands/project/update.js";
+import { Logger, LogLevel } from "./utils/logger.js";
 
 const cli = yargs(hideBin(process.argv))
   .scriptName("grinder")
@@ -29,7 +30,7 @@ const cli = yargs(hideBin(process.argv))
     }
   })
 
-  .command(commitCommand)
+  .command(updateCommand)
   .demandCommand(1, chalk.red("Please provide a command"))
   .strict()
   .fail((msg, err) => {

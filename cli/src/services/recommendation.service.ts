@@ -1,5 +1,5 @@
-import { TrackingService } from "./tracking.service";
-import { Logger } from "../utils/logger";
+import { TrackingService } from "./tracking.service.js";
+import { Logger } from "../utils/logger.js";
 
 interface PostCommitContext {
   commitHash: string;

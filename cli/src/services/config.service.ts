@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import os from "os";
-import { GrinderConfig } from "../types";
+import { GrinderConfig } from "../types/index.js";
 
 const DEFAULT_CONFIG: GrinderConfig = {
   apiEndpoint: "https://api.gitgrinder.com",
