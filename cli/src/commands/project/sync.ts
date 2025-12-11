@@ -12,7 +12,6 @@ export const syncCommand: CommandModule = {
 
     try {
       // fetch + pull --rebase --autostash
-      // This is the "Magic Combo" that rarely fails
       await git.pull(["--rebase", "--autostash"]);
       console.log("✅ Up to date.");
     } catch (e: any) {
