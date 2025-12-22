@@ -1,10 +1,12 @@
 import { CommandModule } from "yargs";
-import { getGit } from "../../lib/git";
-import { handler as saveHandler } from "./save";
+import { getGit } from "../../lib/git.js";
+import { handler as saveHandler } from "./save.js";
 
 interface ShipArgs {
   message?: string;
 }
+
+/** Add all + commit + push */
 
 export const shipCommand: CommandModule<unknown, ShipArgs> = {
   command: "ship [message]",

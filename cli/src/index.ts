@@ -3,6 +3,15 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import chalk from "chalk";
 import { updateCommand } from "./commands/project/update.js";
+import {
+  command as authCommand,
+  describe as authDescribe,
+  builder as authBuilder,
+  handler as authHandler,
+} from "./commands/auth/index.js";
+import { saveCommand } from "./commands/project/save.js";
+import { shipCommand } from "./commands/project/ship.js";
+import { syncCommand } from "./commands/project/sync.js";
 import { Logger, LogLevel } from "./utils/logger.js";
 
 const cli = yargs(hideBin(process.argv))
@@ -31,6 +40,15 @@ const cli = yargs(hideBin(process.argv))
   })
 
   .command(updateCommand)
+  .command({
+    command: authCommand,
+    describe: authDescribe,
+    builder: authBuilder,
+    handler: authHandler,
+  })
+  .command(saveCommand)
+  .command(shipCommand)
+  .command(syncCommand)
   .demandCommand(1, chalk.red("Please provide a command"))
   .strict()
   .fail((msg, err) => {

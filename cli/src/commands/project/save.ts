@@ -1,14 +1,16 @@
 import { CommandModule } from "yargs";
-import { getGit } from "../../lib/git";
+import { getGit } from "../../lib/git.js";
 import prompts from "prompts";
 
 interface SaveArgs {
   message: string;
 }
 
+/** Add all + commit */
+
 export const saveCommand: CommandModule<unknown, SaveArgs> = {
   command: "save [message]",
-  aliases: ["commit", "ci"], 
+  aliases: ["commit", "ci"],
   describe: "Stage and commit all changes",
 
   builder: (yargs) =>

@@ -8,10 +8,11 @@ import prompts from "prompts";
 // 1. Interface
 interface GetArgs {
   url: string;
-  install: boolean; // Flag to force/skip installation
+  install: boolean;
 }
 
-// 2. Command Module
+/** Clone a repo and optionally setup dependencies */
+
 export const getCommand: CommandModule<unknown, GetArgs> = {
   command: "get <url>",
   aliases: ["clone"],
@@ -68,9 +69,7 @@ export const getCommand: CommandModule<unknown, GetArgs> = {
       installCmd = "pip install -r requirements.txt";
     } else if (fs.existsSync(path.join(targetPath, "go.mod"))) {
       installCmd = "go mod download";
-    } else if (fs.existsSync(path.join(targetPath, "Cargo.toml"))) {
-      installCmd = "cargo build";
-    }
+    } 
 
     if (installCmd) {
       // Interactive Prompt
@@ -95,4 +94,3 @@ export const getCommand: CommandModule<unknown, GetArgs> = {
     console.log(`\n👉 \x1b[33mcd ${repoName}\x1b[0m to begin.`);
   },
 };
-

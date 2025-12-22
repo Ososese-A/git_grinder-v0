@@ -1,5 +1,7 @@
 import { CommandModule } from "yargs";
-import { getGit } from "../../lib/git";
+import { getGit } from "../../lib/git.js";
+
+/** Pull updates (Rebase + Autostash) */
 
 export const syncCommand: CommandModule = {
   command: "sync",

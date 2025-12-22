@@ -1,7 +1,8 @@
-import { CommandModule } from "yargs";
-import { getGit } from "../../lib/git";
-import { runCommand, runInteractive } from "../../lib/shell";
-import * as fs from "fs-extra";
+// import { CommandModule } from "yargs";
+import { getGit } from "../../lib/git.js";
+import { runCommand, runInteractive } from "../../lib/shell.js";
+import * as fse from "fs-extra";
+import fs from "fs";
 import * as path from "path";
 import os from "os";
 import chalk from "chalk";
@@ -48,7 +49,7 @@ export const handler = async () => {
 
   // create credential store file if not exists
   // const gitCredentialsPath = path.join(os.homedir(), '.git-credentials');
-  // if (!fs.existsSync(gitCredentialsPath)) {
+  // if (!fs.pathExistsSync(gitCredentialsPath)) {
   //   fs.writeFileSync(gitCredentialsPath, '');
   //   console.log(chalk.green("Created Git credentials store file."));
   // } else {
@@ -71,13 +72,13 @@ export const handler = async () => {
 
     if (createKey) {
       // ensure .ssh dir exists
-      fs.ensureDirSync(sshDir);
+      fse.ensureDirSync(sshDir);
       console.log(chalk.green("Generating SSH key..."));
       runInteractive(
-        `ssh-keygen -t rsa -b 4096 -C "${response.email}" -f "${keyPath}" -N ""`
+        `ssh-keygen -t rsa -b 4096 -C "${response.email}" -f "${keyPath}" -N ""`,
       );
       runCommand(
-        `eval "$(ssh-agent -s)" && ssh-add --apple-use-keychain ~/.ssh/id_rsa_gitgrinder`
+        `eval "$(ssh-agent -s)" && ssh-add --apple-use-keychain ~/.ssh/id_rsa_gitgrinder`,
       );
       console.log(chalk.green(`SSH key generated at ${keyPath}`));
     }
@@ -90,8 +91,8 @@ export const handler = async () => {
     console.log(chalk.blue(publicKey));
     console.log(
       chalk.green(
-        "\nAdd this public key to your Git hosting provider (e.g., GitHub, GitLab) to enable SSH authentication."
-      )
+        "\nAdd this public key to your Git hosting provider (e.g., GitHub, GitLab) to enable SSH authentication.",
+      ),
     );
   }
 };

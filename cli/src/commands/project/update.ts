@@ -98,7 +98,7 @@ export const updateCommand: CommandModule<{}, UpdateArgs> = {
       //   tips.forEach((tip) => Logger.dim(`ׁ‧ ${tip}`));
       // }
     } catch (error) {
-      spinner.fail(chalk.red("x Update failed"));
+      spinner.fail(chalk.red("Update failed"));
       handleError(error);
     }
   },
